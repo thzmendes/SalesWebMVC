@@ -10,10 +10,6 @@ namespace SalesWebMVC.Models
         public int ID { get; set; }
         public string Name { get; set; }
 
-        public Department(int iD, string name)
-        {
-            ID = iD;
-            Name = name ?? throw new ArgumentNullException(nameof(name));
-        }
+       
     }
 }
