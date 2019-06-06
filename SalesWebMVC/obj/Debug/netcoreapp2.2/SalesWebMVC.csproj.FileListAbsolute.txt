@@ -34,3 +34,4 @@ C:\Users\Thomas\Desktop\Code\SalesWebMVC\SalesWebMVC\obj\Debug\netcoreapp2.2\Raz
 C:\Users\Thomas\Desktop\Code\SalesWebMVC\SalesWebMVC\obj\Debug\netcoreapp2.2\Razor\Views\Departments\Edit.g.cshtml.cs
 C:\Users\Thomas\Desktop\Code\SalesWebMVC\SalesWebMVC\obj\Debug\netcoreapp2.2\Razor\Views\Departments\Index.g.cshtml.cs
 C:\Users\Thomas\Desktop\Code\SalesWebMVC\SalesWebMVC\bin\Debug\netcoreapp2.2\wwwroot\lib\bootstrap\dist\css\bootstrap-lumen.css
+C:\Users\Thomas\Desktop\Code\SalesWebMVC\SalesWebMVC\obj\Debug\netcoreapp2.2\Razor\Views\Sellers\Index.g.cshtml.cs
