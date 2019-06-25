@@ -4,15 +4,29 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SalesWebMVC.Models;
-using SalesWebMVC.Models.ViewModel;
+using SalesWebMvc.Models.ViewModels;
 
-namespace SalesWebMVC.Controllers
+namespace SalesWebMvc.Controllers
 {
     public class HomeController : Controller
     {
         public IActionResult Index()
         {
+            return View();
+        }
+
+        public IActionResult About()
+        {
+            ViewData["Message"] = "Salles Web MVC App from C# Course";
+            ViewData["Professor"] = "Nelio Alves";
+
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            ViewData["Message"] = "Your contact page.";
+
             return View();
         }
 

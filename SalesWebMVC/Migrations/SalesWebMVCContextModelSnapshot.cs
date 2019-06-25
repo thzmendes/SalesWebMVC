@@ -3,55 +3,55 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SalesWebMVC.Models;
+using SalesWebMvc.Models;
 
-namespace SalesWebMVC.Migrations
+namespace SalesWebMvc.Migrations
 {
-    [DbContext(typeof(SalesWebMVCContext))]
-    partial class SalesWebMVCContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(SalesWebMvcContext))]
+    partial class SalesWebMvcContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("SalesWebMVC.Models.Department", b =>
+            modelBuilder.Entity("SalesWebMvc.Models.Department", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Department");
                 });
 
-            modelBuilder.Entity("SalesWebMVC.Models.SalesRecord", b =>
+            modelBuilder.Entity("SalesWebMvc.Models.SalesRecord", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<double>("Amount");
 
                     b.Property<DateTime>("Date");
 
-                    b.Property<int?>("SellerID");
+                    b.Property<int?>("SellerId");
 
                     b.Property<int>("Status");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("SellerID");
+                    b.HasIndex("SellerId");
 
-                    b.ToTable("SalesRecords");
+                    b.ToTable("SalesRecord");
                 });
 
-            modelBuilder.Entity("SalesWebMVC.Models.Seller", b =>
+            modelBuilder.Entity("SalesWebMvc.Models.Seller", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<double>("BaseSalary");
@@ -64,24 +64,24 @@ namespace SalesWebMVC.Migrations
 
                     b.Property<string>("Name");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
 
                     b.ToTable("Seller");
                 });
 
-            modelBuilder.Entity("SalesWebMVC.Models.SalesRecord", b =>
+            modelBuilder.Entity("SalesWebMvc.Models.SalesRecord", b =>
                 {
-                    b.HasOne("SalesWebMVC.Models.Seller", "Seller")
-                        .WithMany()
-                        .HasForeignKey("SellerID");
+                    b.HasOne("SalesWebMvc.Models.Seller", "Seller")
+                        .WithMany("Sales")
+                        .HasForeignKey("SellerId");
                 });
 
-            modelBuilder.Entity("SalesWebMVC.Models.Seller", b =>
+            modelBuilder.Entity("SalesWebMvc.Models.Seller", b =>
                 {
-                    b.HasOne("SalesWebMVC.Models.Department", "Department")
-                        .WithMany()
+                    b.HasOne("SalesWebMvc.Models.Department", "Department")
+                        .WithMany("Sellers")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

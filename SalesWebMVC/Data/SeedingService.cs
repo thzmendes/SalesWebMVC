@@ -1,29 +1,35 @@
-﻿using SalesWebMVC.Models;
-using SalesWebMVC.Models.Enums;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using SalesWebMvc.Models;
+using SalesWebMvc.Models.Enums;
 
-namespace SalesWebMVC.Data
+namespace SalesWebMvc.Data
 {
     public class SeedingService
     {
-        private SalesWebMVCContext _Context;
+        private SalesWebMvcContext _context;
 
-        public SeedingService(SalesWebMVCContext context)
+        public SeedingService(SalesWebMvcContext context)
         {
-            _Context = context;
+            _context = context;
         }
 
         public void Seed()
         {
-            if (_Context.Department.Any() || _Context.Seller.Any() || _Context.SalesRecords.Any()) { return; /*O banco de dados ja foi populado */}
+            if (_context.Department.Any() ||
+                _context.Seller.Any() ||
+                _context.SalesRecord.Any())
+            {
+                return; // DB has been seeded
+            }
 
-            Department d1 = new Department(1, "Computadores");
-            Department d2 = new Department(2, "Eletrônicos");
+            Department d1 = new Department(1, "Computers");
+            Department d2 = new Department(2, "Electronics");
             Department d3 = new Department(3, "Fashion");
-            Department d4 = new Department(4, "Livros");
+            Department d4 = new Department(4, "Books");
 
-            
             Seller s1 = new Seller(1, "Bob Brown", "bob@gmail.com", new DateTime(1998, 4, 21), 1000.0, d1);
             Seller s2 = new Seller(2, "Maria Green", "maria@gmail.com", new DateTime(1979, 12, 31), 3500.0, d2);
             Seller s3 = new Seller(3, "Alex Grey", "alex@gmail.com", new DateTime(1988, 1, 15), 2200.0, d1);
@@ -61,17 +67,18 @@ namespace SalesWebMVC.Data
             SalesRecord r28 = new SalesRecord(28, new DateTime(2018, 10, 7), 4000.0, SaleStatus.Billed, s3);
             SalesRecord r29 = new SalesRecord(29, new DateTime(2018, 10, 23), 12000.0, SaleStatus.Billed, s5);
             SalesRecord r30 = new SalesRecord(30, new DateTime(2018, 10, 12), 5000.0, SaleStatus.Billed, s2);
-            
-            _Context.Department.AddRange(d1,d2,d3,d4);
-            _Context.Seller.AddRange(s1,s2,s3,s4,s5,s6);
-            _Context.SalesRecords.AddRange(
+
+            _context.Department.AddRange(d1, d2, d3, d4);
+
+            _context.Seller.AddRange(s1, s2, s3, s4, s5, s6);
+
+            _context.SalesRecord.AddRange(
                 r1, r2, r3, r4, r5, r6, r7, r8, r9, r10,
                 r11, r12, r13, r14, r15, r16, r17, r18, r19, r20,
                 r21, r22, r23, r24, r25, r26, r27, r28, r29, r30
             );
 
-            _Context.SaveChanges();
-
+            _context.SaveChanges();
         }
     }
 }

@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using SalesWebMVC.Models;
+using SalesWebMvc.Models;
 
-namespace SalesWebMVC.Controllers
+namespace SalesWebMvc.Controllers
 {
     public class DepartmentsController : Controller
     {
-        private readonly SalesWebMVCContext _context;
+        private readonly SalesWebMvcContext _context;
 
-        public DepartmentsController(SalesWebMVCContext context)
+        public DepartmentsController(SalesWebMvcContext context)
         {
             _context = context;
         }
@@ -33,7 +33,7 @@ namespace SalesWebMVC.Controllers
             }
 
             var department = await _context.Department
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (department == null)
             {
                 return NotFound();
@@ -53,7 +53,7 @@ namespace SalesWebMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name")] Department department)
+        public async Task<IActionResult> Create([Bind("Id,Name")] Department department)
         {
             if (ModelState.IsValid)
             {
@@ -85,9 +85,9 @@ namespace SalesWebMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name")] Department department)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Department department)
         {
-            if (id != department.ID)
+            if (id != department.Id)
             {
                 return NotFound();
             }
@@ -101,7 +101,7 @@ namespace SalesWebMVC.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DepartmentExists(department.ID))
+                    if (!DepartmentExists(department.Id))
                     {
                         return NotFound();
                     }
@@ -124,7 +124,7 @@ namespace SalesWebMVC.Controllers
             }
 
             var department = await _context.Department
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (department == null)
             {
                 return NotFound();
@@ -146,7 +146,7 @@ namespace SalesWebMVC.Controllers
 
         private bool DepartmentExists(int id)
         {
-            return _context.Department.Any(e => e.ID == id);
+            return _context.Department.Any(e => e.Id == id);
         }
     }
 }
